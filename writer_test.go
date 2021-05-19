@@ -30,3 +30,8 @@ func Test_AddModel(t *testing.T) {
 	nextSchemaYaml := AddModel(schemaYaml, Model{Name: "hello"})
 	assert.Equal(t, expectedNewSchemaModelYaml, nextSchemaYaml)
 }
+
+func Test_DeleteModel(t *testing.T) {
+	deletedSchemaYaml := DeleteModel(expectedNewSchemaModelYaml, "hello")
+	assert.Equal(t, deletedSchemaYaml, schemaYaml)
+}

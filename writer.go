@@ -59,5 +59,17 @@ func AddModel(src DbtSchemaYaml, modelEntry Model) DbtSchemaYaml {
 }
 
 func DeleteModel(src DbtSchemaYaml, modelName string) DbtSchemaYaml {
-	return src
+	nextYaml := DbtSchemaYaml(src)
+	modelIndex := funk.IndexOf(nextYaml.Models, func(model Model) bool {
+		return model.Name == modelName
+	})
+	if modelIndex == -1 {
+		log.Fatalf("같은 이름의 Model을 찾을 수 없습니다 [%v]", modelName)
+	}
+	nextYaml.Models = append(nextYaml.Models[:modelIndex], nextYaml.Models[modelIndex+1:]...)
+	_, err := yaml.Marshal(&nextYaml)
+	if err != nil {
+		log.Fatal("nextYaml을 파싱할 수 없습니다")
+	}
+	return nextYaml
 }
