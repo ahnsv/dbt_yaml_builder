@@ -1,14 +1,26 @@
 package dbt_yaml_builder
 
-import funk "github.com/thoas/go-funk"
+import (
+	"log"
 
-func AddNewSourceTable(src DbtSourceYaml, sourceName string, tableEntry SourceTables) DbtSourceYaml {
-	sources := src.Sources
-	selectedSource := funk.Find(sources, func(source Sources) bool {
+	"github.com/thoas/go-funk"
+	"gopkg.in/yaml.v2"
+)
+
+func AddNewSourceTable(src DbtSourceYaml, sourceName string, tableEntry SourceTable) DbtSourceYaml {
+	nextYaml := DbtSourceYaml(src)
+	index := funk.IndexOf(nextYaml.Sources, func(source Source) bool {
 		return source.Name == sourceName
 	})
-	nextSource := append(selectedSource.SourceTables, tableEntry) // FIXME
-	return nextSource
+	if index == -1 {
+		log.Fatalf("sourceName: [%v]을 찾을 수 없습니다", sourceName)
+	}
+	nextYaml.Sources[index].SourceTables = append(nextYaml.Sources[index].SourceTables, tableEntry)
+	_, err := yaml.Marshal(&nextYaml)
+	if err != nil {
+		log.Fatal("nextYaml을 파싱할 수 없습니다")
+	}
+	return nextYaml
 }
 
 func DeleteSourceTable(src DbtSourceYaml, sourceName string, tableName string) DbtSourceYaml {

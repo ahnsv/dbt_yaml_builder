@@ -1,7 +1,7 @@
 package dbt_yaml_builder
 
 // Tables
-type SourceTables struct {
+type SourceTable struct {
 	Name        string               `yaml:"name"`
 	Identifier  string               `yaml:"identifier"`
 	Description string               `yaml:"description"`
@@ -41,20 +41,20 @@ type SourceQuoting struct {
 
 // Yaml2Go
 type DbtSourceYaml struct {
-	Sources []Sources `yaml:"sources"`
-	Version int       `yaml:"version"`
+	Sources []Source `yaml:"sources"`
+	Version int      `yaml:"version"`
 }
 
-// Sources
-type Sources struct {
-	SourceTables  []SourceTables `yaml:"tables"`
-	Name          string         `yaml:"name"`
-	Description   string         `yaml:"description"`
-	Database      string         `yaml:"database"`
-	Schema        string         `yaml:"schema"`
-	Loader        string         `yaml:"loader"`
-	LoadedAtField string         `yaml:"loaded_at_field"`
-	Quoting       SourceQuoting  `yaml:"quoting"`
+// Source
+type Source struct {
+	SourceTables  []SourceTable `yaml:"tables"`
+	Name          string        `yaml:"name"`
+	Description   string        `yaml:"description"`
+	Database      string        `yaml:"database"`
+	Schema        string        `yaml:"schema"`
+	Loader        string        `yaml:"loader"`
+	LoadedAtField string        `yaml:"loaded_at_field"`
+	Quoting       SourceQuoting `yaml:"quoting"`
 }
 
 // DbtSchemaYaml
