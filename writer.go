@@ -24,7 +24,22 @@ func AddNewSourceTable(src DbtSourceYaml, sourceName string, tableEntry SourceTa
 }
 
 func DeleteSourceTable(src DbtSourceYaml, sourceName string, tableName string) DbtSourceYaml {
-	return src
+	nextYaml := DbtSourceYaml(src)
+	sourceIndex := funk.IndexOf(nextYaml.Sources, func(source Source) bool {
+		return source.Name == sourceName
+	})
+	if sourceIndex == -1 {
+		log.Fatalf("sourceName: [%v]을 찾을 수 없습니다", sourceName)
+	}
+	tableIndex := funk.IndexOf(nextYaml.Sources[sourceIndex].SourceTables, func(table SourceTable) bool {
+		return table.Name == tableName
+	})
+	nextYaml.Sources[sourceIndex].SourceTables = append(nextYaml.Sources[sourceIndex].SourceTables[:tableIndex], nextYaml.Sources[sourceIndex].SourceTables[tableIndex+1:]...)
+	_, err := yaml.Marshal(&nextYaml)
+	if err != nil {
+		log.Fatal("nextYaml을 파싱할 수 없습니다")
+	}
+	return nextYaml
 }
 
 func AddModel(src DbtSchemaYaml, modelEntry Models) DbtSchemaYaml {
