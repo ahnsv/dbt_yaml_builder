@@ -12,7 +12,7 @@ func AddModelActionHandler(c *cli.Context) error {
 	path := c.Args().Get(0)
 	modelName := c.String("name")
 	modelDescription := c.String("description")
-	modelColumns := c.StringSlice("column")
+	modelColumns := c.StringSlice("columns")
 	columns := ParseColumnStringSliceToDbtModelColumns(modelColumns) // FIXME
 
 	srcYaml := ReadDbtSchemaYaml(path)
