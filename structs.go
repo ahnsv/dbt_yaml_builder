@@ -59,12 +59,12 @@ type Source struct {
 
 // DbtSchemaYaml
 type DbtSchemaYaml struct {
-	Version int      `yaml:"version"`
-	Models  []Models `yaml:"models"`
+	Version int     `yaml:"version"`
+	Models  []Model `yaml:"models"`
 }
 
-// Models
-type Models struct {
+// Model
+type Model struct {
 	Name        string            `yaml:"name"`
 	Description string            `yaml:"description"`
 	Columns     []DbtModelColumns `yaml:"columns"`

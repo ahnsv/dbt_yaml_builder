@@ -42,8 +42,20 @@ func DeleteSourceTable(src DbtSourceYaml, sourceName string, tableName string) D
 	return nextYaml
 }
 
-func AddModel(src DbtSchemaYaml, modelEntry Models) DbtSchemaYaml {
-	return src
+func AddModel(src DbtSchemaYaml, modelEntry Model) DbtSchemaYaml {
+	nextYaml := DbtSchemaYaml(src)
+	sameModelNameExists := funk.IndexOf(nextYaml.Models, func(model Model) bool {
+		return model.Name == modelEntry.Name
+	}) != -1
+	if sameModelNameExists != false {
+		log.Fatalf("같은 이름은 Model이 이미 존재합니다 [%v]", modelEntry.Name)
+	}
+	nextYaml.Models = append(nextYaml.Models, modelEntry)
+	_, err := yaml.Marshal(&nextYaml)
+	if err != nil {
+		log.Fatal("nextYaml을 파싱할 수 없습니다")
+	}
+	return nextYaml
 }
 
 func DeleteModel(src DbtSchemaYaml, modelName string) DbtSchemaYaml {
