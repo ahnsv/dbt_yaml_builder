@@ -1,4 +1,4 @@
-package dbt_yaml_builder
+package dbt
 
 import (
 	"io/ioutil"

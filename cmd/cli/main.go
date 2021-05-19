@@ -4,7 +4,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/ahnsv/dbt_yaml_builder"
 	"github.com/urfave/cli/v2"
 )
 
@@ -33,7 +32,7 @@ func main() {
 						Aliases: []string{"c"},
 					},
 				},
-				Action: dbt_yaml_builder.AddModelActionHandler,
+				Action: AddModelActionHandler,
 			},
 			{
 				Name:    "delete_model",
@@ -45,7 +44,7 @@ func main() {
 						Aliases: []string{"n"},
 					},
 				},
-				Action: dbt_yaml_builder.DeleteModelActionHandler,
+				Action: DeleteModelActionHandler,
 			},
 		},
 	}

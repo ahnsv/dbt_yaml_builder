@@ -1,5 +1,5 @@
 cli-build:
-	@cd cli && go build -o ../bin/dbt_yaml_builder_cli
+	@cd cli && go build ./cmd/cli -o ../bin/dbt_yaml_builder_cli
 
 test:
-	go test .	
+	go test ./dbt -v
