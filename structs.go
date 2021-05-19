@@ -2,11 +2,11 @@ package dbt_yaml_builder
 
 // Tables
 type SourceTables struct {
-	Name              string              `yaml:"name"`
-	Identifier        string              `yaml:"identifier"`
-	Description       string              `yaml:"description"`
-	SourceTableColumn []SourceTableColumn `yaml:"columns"`
-	Freshness         interface{}         `yaml:"freshness"`
+	Name        string               `yaml:"name"`
+	Identifier  string               `yaml:"identifier"`
+	Description string               `yaml:"description"`
+	Columns     []SourceTableColumns `yaml:"columns"`
+	Freshness   interface{}          `yaml:"freshness"`
 }
 
 type Freshness struct {
@@ -27,7 +27,7 @@ type WarnAfter struct {
 }
 
 // Columns
-type SourceTableColumn struct {
+type SourceTableColumns struct {
 	Name  string   `yaml:"name"`
 	Tests []string `yaml:"tests"`
 }
@@ -54,5 +54,25 @@ type Sources struct {
 	Schema        string         `yaml:"schema"`
 	Loader        string         `yaml:"loader"`
 	LoadedAtField string         `yaml:"loaded_at_field"`
-	SourceQuoting SourceQuoting  `yaml:"quoting"`
+	Quoting       SourceQuoting  `yaml:"quoting"`
+}
+
+// DbtSchemaYaml
+type DbtSchemaYaml struct {
+	Version int      `yaml:"version"`
+	Models  []Models `yaml:"models"`
+}
+
+// Models
+type Models struct {
+	Name        string            `yaml:"name"`
+	Description string            `yaml:"description"`
+	Columns     []DbtModelColumns `yaml:"columns"`
+}
+
+// DbtModelColumns
+type DbtModelColumns struct {
+	Description string   `yaml:"description"`
+	Name        string   `yaml:"name"`
+	Tests       []string `yaml:"tests"`
 }
