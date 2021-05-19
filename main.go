@@ -23,7 +23,7 @@ func main() {
 				Name:    "add_model",
 				Aliases: []string{"m"},
 				Usage:   "모델 추가",
-				Action:  ModelCommand,
+				Action:  AddModelActionHandler,
 			},
 		},
 	}
