@@ -1,0 +1,81 @@
+repo_name: ahnsv/dbt_yaml_builder
+report_id: 386fdbca38694ba7283de6cba8688f9f
+version: 0.1
+repo_type: Public
+timestamp: '2024-05-27T04:26:02+00:00'
+requested_by: ahnsv
+provider: github
+branch: master
+detected_tools_count: 5
+tools:
+- name: Golang
+  description: An open source programming language that makes it easy to build simple,
+    reliable, and efficient software
+  website_url: http://golang.org/
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1005/O6AczwfV_400x400.png
+  detection_source_url: https://github.com/ahnsv/dbt_yaml_builder
+  detection_source: Repo Metadata
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/ahnsv/dbt_yaml_builder
+  detection_source: Repo Metadata
+- name: Testify
+  description: A toolkit with common assertions and mocks that plays nicely with the
+    standard library
+  website_url: https://github.com/stretchr/testify
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Go Testing
+  image_url: https://img.stackshare.io/service/8695/stretchr.png
+  detection_source_url: https://github.com/ahnsv/dbt_yaml_builder/blob/master/go.mod
+  detection_source: go.mod
+  last_updated_by: humphrey-default
+  last_updated_on: 2021-05-19 03:03:22.000000000 Z
+- name: yaml.v2
+  description: YAML support for the Go language
+  package_url: https://pkg.go.dev/gopkg.in/yaml.v2
+  version: 2.2.2
+  license: LGPL-3.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/ahnsv/dbt_yaml_builder/blob/master/go.sum
+  detection_source: go.mod
+  last_updated_by: humphrey-default
+  last_updated_on: 2021-05-19 03:03:22.000000000 Z
+  vulnerabilities:
+  - name: Excessive Platform Resource Consumption within a Loop in Kubernetes
+    cve_id: CVE-2019-11254
+    cve_url: https://github.com/advisories/GHSA-wxc4-f4m6-wwqv
+    detected_date: Jan 28
+    severity: moderate
+    first_patched: 2.2.8
+- name: go-funk
+  description: A modern Go utility library which provides helpers
+  package_url: https://pkg.go.dev/github.com/thoas/go-funk
+  version: 0.8.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/ahnsv/dbt_yaml_builder/blob/master/go.sum
+  detection_source: go.mod
+  last_updated_by: humphrey-default
+  last_updated_on: 2021-05-19 03:34:38.000000000 Z
